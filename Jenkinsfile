@@ -5,7 +5,7 @@ node {
     checkout scm
   }
   stage('test') {
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") { // map home/gradle/.gradle trong container với folder env.home/.gradle của server chạy jenkins
        sh 'cd complete && gradle test'
      }
   }
