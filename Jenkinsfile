@@ -6,7 +6,7 @@ node {
   }
   stage('test') {
      myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") { // map home/gradle/.gradle trong container với folder env.home/.gradle của server chạy jenkins
-       sh 'cd complete && gradle test' //vao folder tét và chạy gradle với agument test
+       sh 'cd complete && gradle test' //vao folder tét và chạy gradle với agument test, lỗi thì sửa thành ./gradle test
      }
   }
   stage('run') {
