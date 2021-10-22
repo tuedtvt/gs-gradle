@@ -1,22 +1,18 @@
 node {
-  def myGradleContainer = docker.image('gradle:jdk8-alpine')
-  myGradleContainer.pull()
-  stage('prep') {
-    checkout scm
+    def server = Artifactory.server 'newtechacademy.jfrog.io'
+    def myGradleContainer = docker.image('gradle:jdk8-alpine')
+    myGradleContainer.pull()
+    stage('prep') {
+      checkout scm
+    }
+    stage('build') {
+       myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+         sh 'cd complete && ./gradlew build'
+       }
+    }
+    stage('test') {
+       myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+         sh 'cd complete && ./gradlew test'
+       }
+    }
   }
-  stage('test') {
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") { // map home/gradle/.gradle trong container với folder env.home/.gradle của server chạy jenkins
-       sh 'cd complete && gradle test' //vao folder tét và chạy gradle với agument test, lỗi thì sửa thành ./gradle test
-     }
-  }
-  stage('run') {
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-       sh 'cd complete && gradle run'
-     }
-  }
-  stage('run') {
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-       sh 'cd complete && ./gradlew build'
-     }
-  }
-}
