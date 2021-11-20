@@ -19,7 +19,7 @@ pipeline {
         stage ('Test & Build Artifact') {
             agent {
                 docker {
-                    image 'openjdk:11'
+                    image 'gradle:jdk8-alpine'
                     args '-v "$PWD":/app'
                     reuseNode true
                 }
