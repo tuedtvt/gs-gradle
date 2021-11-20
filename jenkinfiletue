@@ -29,7 +29,7 @@ pipeline {
                     echo $PWD
                     cd complete
                     chmod +x -R gradlew
-                   ./gradlew build
+                    gradlew build
                     
                 '''
                
