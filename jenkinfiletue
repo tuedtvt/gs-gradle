@@ -10,6 +10,12 @@ pipeline {
     } */
 
     stages {
+        stage('Prepare') {
+                    
+            steps {
+                checkout scm
+            }
+        }
         stage ('Test & Build Artifact') {
             agent {
                 docker {
