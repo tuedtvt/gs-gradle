@@ -20,7 +20,7 @@ pipeline {
             agent {
                 docker {
                     image 'gradle:jdk8-alpine'
-                    args '-v "$PWD":/app' 
+                    args '-v "$PWD":/app -v ${env.HOME}/.gradle:/home/gradle/.gradle' 
                     reuseNode true
                 }
             }
@@ -28,9 +28,7 @@ pipeline {
                 sh '''
                     echo $PWD
                     cd complete
-                    chmod +x -R gradlew
-                    gradlew build
-                    
+                    gradle build                 
                 '''
                
             }
