@@ -25,7 +25,15 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd complete && chmod +x -R gradle && ./gradle build'
+                sh '''
+                    echo $PWD
+                    cd complete
+                    chmod +x -R gradle
+                    chmod 777 gradle
+                   ./gradle build
+                    
+                '''
+               
             }
         }
        /* stage ('Build & Push docker image') {
