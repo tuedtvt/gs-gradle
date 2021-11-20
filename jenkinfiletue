@@ -20,7 +20,7 @@ pipeline {
             agent {
                 docker {
                     image 'gradle:jdk8-alpine'
-                    args '-v "$PWD":/app -v $PWD/.gradle:/home/gradle/.gradle' 
+                    args '-v "$PWD":/app -v /var/jenkins_home/workspace/testgrandle/.gradle:/home/gradle/.gradle' 
                     reuseNode true
                 }
             }
