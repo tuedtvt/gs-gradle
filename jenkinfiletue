@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sh 'cd complete && ./gradlew clean build'
+                sh 'sh 'cd complete && gradlew clean build'
             }
         }
        /* stage ('Build & Push docker image') {
