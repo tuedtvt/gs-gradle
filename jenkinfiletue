@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    triggers{
+    /*triggers{
         bitbucketPush()
-    }
+    }*/
 
    /* environment {
         REMOTE_ADDRESS = "REPLACE_WITH_REMOTE_ADDRESS"
